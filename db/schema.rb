@@ -22,4 +22,13 @@ ActiveRecord::Schema.define(version: 2020_09_26_073012) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
+  create_table "ideas", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_ideas_on_category_id"
+  end
+
+  add_foreign_key "ideas", "categories"
 end
