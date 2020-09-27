@@ -2,6 +2,11 @@ module Api
   module V1
     class CategoriesController < ApplicationController
 
+      def index
+        categories = Category.all
+        render json: { status: 201, message: 'Loaded categories', data: categories }
+      end
+
       def create
         category = Category.new(category_params)
         if category.save

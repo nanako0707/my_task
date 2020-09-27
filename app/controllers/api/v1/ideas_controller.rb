@@ -2,8 +2,12 @@ module Api
   module V1
     class IdeasController < ApplicationController
 
-      def create
+      def index
+        ideas = Idea.all
+        render json: { status: 201, message: 'Loaded ideas', data: ideas }
+      end
 
+      def create
         idea = Idea.new(idea_params)
         if idea.save
           render json: { status: 201, data: idea }
